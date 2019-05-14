@@ -3,6 +3,8 @@
 # Add steps that build, run tests, deploy, and more:
 # https://aka.ms/yaml
 
+name: 'Single PA - Publish, Download'
+
 trigger:
 - master
 
@@ -27,5 +29,3 @@ steps:
     #artifactName: # Optional
     #itemPattern: '**' # Optional
     downloadPath: '$(System.ArtifactsDirectory)'
-    
-  displayName: 'Single PA - Publish,Download'
