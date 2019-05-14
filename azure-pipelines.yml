@@ -12,19 +12,34 @@ pool:
 steps:
 - task: PublishPipelineArtifact@0
   inputs:
-    artifactName: 'SingleFileDrop'
-    targetPath: 'foo.cs'
+    artifactName: 'MultiEmptyFilesDrop'
+    targetPath: 'EmptyFiles/'
 
 - task: DownloadPipelineArtifact@1
   inputs:
-    #buildType: 'current' # Options: current, specific
-    #project: # Required when buildType == Specific
-    #pipeline: # Required when buildType == Specific
-    #specificBuildWithTriggering: false # Optional
-    #buildVersionToDownload: 'latest' # Required when buildType == Specific. Options: latest, latestFromBranch, specific
-    #branchName: 'refs/heads/master' # Required when buildType == Specific && BuildVersionToDownload == LatestFromBranch
-    #buildId: # Required when buildType == Specific && BuildVersionToDownload == Specific
-    #tags: # Optional
-    #artifactName: # Optional
-    #itemPattern: '**' # Optional
+    artifactName: MultiEmptyFilesDrop
+    downloadPath: '$(System.ArtifactsDirectory)'
+
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'MultiNonEmptyFilesDrop'
+    targetPath: 'NonEmptyFiles/'
+
+- task: DownloadPipelineArtifact@1
+  inputs:
+    artifactName: MultiNonEmptyFilesDrop
+    downloadPath: '$(System.ArtifactsDirectory)'
+
+- task: PublishPipelineArtifact@0
+  inputs:
+    artifactName: 'AdditionalSingleFileDrop'
+    targetPath: 'bar.cs'
+
+- task: DownloadPipelineArtifact@1
+  inputs:
+    artifactName: AdditionalSingleFileDrop
+    downloadPath: '$(System.ArtifactsDirectory)'
+
+- task: DownloadPipelineArtifact@1
+  inputs:
     downloadPath: '$(System.ArtifactsDirectory)'
