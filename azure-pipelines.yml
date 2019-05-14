@@ -14,7 +14,8 @@ pool:
 steps:
 - task: PublishPipelineArtifact@0
   inputs:
-    targetPath: bar.cs
+    artifactName: 'SingleFileDrop'
+    targetPath: 'foo.cs'
 
 - task: DownloadPipelineArtifact@1
   inputs:
