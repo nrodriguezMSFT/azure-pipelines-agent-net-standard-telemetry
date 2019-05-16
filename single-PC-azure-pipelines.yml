@@ -11,13 +11,14 @@ pool:
   default
 
 steps:
-- task: SaveCache@0
-  inputs:
-    key: 'SingleFileCache'
-    path: 'foo.cs'
-
 - task: RestoreCache@0
   inputs:
     key: 'SingleFileCache'
-    path: 'foo1.cs'
+    path: 'NonEmptyFiles'
     cacheHitVar: 'CacheHit'
+
+- task: SaveCache@0
+  inputs:
+    key: 'SingleFileCache'
+    path: 'NonEmptyFiles'
+
