@@ -19,5 +19,5 @@ steps:
 - task: RestoreCache@0
   inputs:
     key: 'SingleFileCache'
-    path: 'foo.cs'
+    path: 'foo1.cs'
     cacheHitVar: 'CacheHit'
