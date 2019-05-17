@@ -6,40 +6,30 @@
 trigger:
 - master
 
-pool:
-  default
+pool: default
 
 steps:
-- task: SaveCache@0
-  inputs:
-    key: 'MultiEmptyFilesCache'
-    path: 'EmptyFiles/'
 
 - task: RestoreCache@0
   inputs:
     key: MultiEmptyFilesCache
     path: '$(System.ArtifactsDirectory)'
 
-- task: SaveCache@0
-  inputs:
-    key: 'MultiNonEmptyFilesCache'
-    path: 'NonEmptyFiles/'
-
 - task: RestoreCache@0
   inputs:
     key: MultiNonEmptyFilesCache
     path: '$(System.ArtifactsDirectory)'
 
+- task: RestoreCache@0
+  inputs:
+    path: '$(System.ArtifactsDirectory)'
+
 - task: SaveCache@0
   inputs:
-    key: 'AdditionalSingleFileCache'
-    path: 'bar.cs'
-
-- task: RestoreCache@0
+    key: 'MultiEmptyFilesCache'
+    path: 'EmptyFiles/'
+    
+- task: SaveCache@0
   inputs:
-    key: AdditionalSingleFileCache
-    path: '$(System.ArtifactsDirectory)'
-
-- task: RestoreCache@0
-  inputs:
-    path: '$(System.ArtifactsDirectory)'
+    key: 'MultiNonEmptyFilesCache'
+    path: 'NonEmptyFiles/'

@@ -6,8 +6,7 @@
 trigger:
 - master
 
-pool:
-  default
+pool: default
 
 steps:
 - task: PublishPipelineArtifact@0
